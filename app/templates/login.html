@@ -1,0 +1,50 @@
+<!DOCTPYT html>
+<head>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+{% block body %}
+
+  <h1>Login</h1>
+
+
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+
+  <form action=""  method="POST" class="form-horizontal col-md-offset-3">
+    <dl>
+      <dt>Username:
+            {{ form.name }}
+            {{ form.name.label }}
+
+            {{ form.csrf_token }}
+          <ul>
+              {% for error in form.name.errors %}
+                <li style="color: red;">
+                    {{ error }}
+                </li>
+              {% endfor %}
+          </ul>
+
+      <dt>Password:
+
+         {{ form.password }}
+        {{ form.password.label }}
+        <ul>
+              {% for error in form.password.errors %}
+                <li style="color: red;">
+                    {{ error }}
+                </li>
+                {% endfor %}
+          </ul>
+    </dl>
+        {{ form.submit }}
+  </form>
+
+{% endblock %}
