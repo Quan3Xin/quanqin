@@ -60,8 +60,12 @@ def log():
                 return redirect(request.args.get('next') or url_for('home_view.index'))
 
 
-        return render_template('login.html', error=error, form=form_table)
+      return render_template('login.html', error=error, form=form_table)
 
+@home_view.route('/register', method=['GET', 'POST'])
+def register():
+    error = None
+    forms_register = forms.Register_Form()
 
 @home_view.route('/error')
 def error():
