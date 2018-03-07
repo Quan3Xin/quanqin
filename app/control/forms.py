@@ -25,12 +25,12 @@ class Name_Form(FlaskForm):
             raise ValidationError('account invalid')
 class Register_Form(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    pwd = PasswordField('pwd', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
     submit = SubmitField('register')
 
     def validate_name(self, field):
         account = field.data
 
         admin = User.query.filter_by(name=account).count()
-        if admin is not None:
-            raise ValidationError('account invalid')
+        if admin != 0:
+            raise ValidationError('账号存在')

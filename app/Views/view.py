@@ -58,15 +58,19 @@ def log():
                 session['kown'] = True
                 data = ''
                 return redirect(request.args.get('next') or url_for('home_view.index'))
+    return render_template('login.html', error=error, form=form_table)
 
-
-      return render_template('login.html', error=error, form=form_table)
-
-@home_view.route('/register', method=['GET', 'POST'])
+@home_view.route('/register', methods=['GET', 'POST'])
 def register():
     error = None
     forms_register = forms.Register_Form()
-
+    if forms_register.validate_on_submit():
+        user = User(name = forms_register.name.data, pwd=forms_register.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('注册成功')
+        return redirect(request.args.get('next') or url_for('home_view.index'))
+    return render_template('register.html', form=forms_register, error=error)
 @home_view.route('/error')
 def error():
     return render_template('error.html')
