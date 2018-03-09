@@ -7,7 +7,19 @@
     <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body class="container-fluid">
 
+<ul>
+
+</ul>
+{% block content %}
+    {% for foo in range(10) %}
+        <h1>hello,w</h1>
+    {% endfor %}
+
+<div class="jumbotron">
+</div>
+
+{% endblock %}
 </body>
 </html>

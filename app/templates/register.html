@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <head>
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
@@ -11,6 +11,8 @@
 {% block body %}
   <h1>Login</h1>
 
+<button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
+<button type="button" class="btn btn-default btn-lg" disabled="disabled">Button</button>
 
   {% if error %}
     <p class=error><strong>Error:</strong> {{ error }}
@@ -18,7 +20,7 @@
 
   <form action=""  method="POST" class="form-horizontal col-md-offset-3">
     <dl>
-      <dt>Username:
+      <dt >Username:
             {{ form.name }}
             {{ form.name.label }}
 

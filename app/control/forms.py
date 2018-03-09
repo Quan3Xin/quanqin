@@ -10,6 +10,8 @@ class Name_Form(FlaskForm):
 
                        render_kw={
                            "required": "required",
+                            "class"  : "col-sm-2 control-label",
+                           "for": "formGroupInputLarge",
                            "placeholder":  "plase"
                        })
     submit = SubmitField('Submit')

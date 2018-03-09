@@ -69,6 +69,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('注册成功')
+        print('-----------------------<>')
         return redirect(request.args.get('next') or url_for('home_view.index'))
     return render_template('register.html', form=forms_register, error=error)
 @home_view.route('/error')
