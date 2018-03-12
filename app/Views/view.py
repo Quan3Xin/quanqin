@@ -51,12 +51,14 @@ def log():
         if admin != None:
             if admin.verify_password(data['password']):
                 print('===============================<>')
+                flash("密码or账号错误")
                 return redirect(url_for('home_view.error'))
             else:
                 print(admin)
                 print('<------------------------->')
                 session['kown'] = True
                 data = ''
+                flash("Jumping")
                 return redirect(request.args.get('next') or url_for('home_view.index'))
     return render_template('login.html', error=error, form=form_table)
 
