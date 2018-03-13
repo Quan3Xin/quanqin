@@ -49,10 +49,10 @@ def log():
 
         print(admin)
         if admin != None:
-            if admin.verify_password(data['password']):
+            if not admin.verify_password(data['password']):
                 print('===============================<>')
                 flash("密码or账号错误")
-                return redirect(url_for('home_view.error'))
+                return redirect(url_for('home_view.log'))
             else:
                 print(admin)
                 print('<------------------------->')
@@ -60,6 +60,8 @@ def log():
                 data = ''
                 flash("Jumping")
                 return redirect(request.args.get('next') or url_for('home_view.index'))
+        else:
+            flash("账号不能为空")
     return render_template('login.html', error=error, form=form_table)
 
 @home_view.route('/register', methods=['GET', 'POST'])
@@ -77,15 +79,3 @@ def register():
 @home_view.route('/error')
 def error():
     return render_template('error.html')
-
-
-"""
- flash('account Invalid')
- print(admin, '+++++')
- return redirect(url_for('home_view.log'))
-if not admin.check_pwd(pwd=int(data['pwd'])):
- flash("Invalid password")
- return redirect(url_for('home_view.log'))
-session['admin'] = data['account']
-return redirect(request.args.get('next') or url_for('home_view.index'))
-"""
