@@ -9,19 +9,19 @@ class Name_Form(FlaskForm):
 
                        render_kw={
                            "required": "required",
-                           "class": "col-sm-2 control-label",
+                           "class": "from-control",
                            "for": "formGroupInputLarge",
                            "placeholder": "请输入你的名字"
                        })
     submit = SubmitField('Submit',
                          render_kw={
-                             "class": "dbtn btn-primary btn-lg btn-block"
+                             "class": "from-control"
                          })
 
     password = PasswordField('password', validators=[DataRequired(message=u"密码不能为空")],
                              render_kw={
                                  "required": "required",
-                                 "class": "col-sm-2 control-label",
+                                 "class": " from-control",
                                  "placeholder": "请输入密码"
                     })
 
