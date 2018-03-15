@@ -5,26 +5,27 @@ from app.models.model import User
 
 
 class Name_Form(FlaskForm):
-    name = StringField('What your name', validators=[DataRequired('plz')],
-
+    name = StringField('What your name', validators=[DataRequired(message=u'内容不能不为空')],
+                       # label='请输入用户名',
                        render_kw={
-                           "required": "required",
+                           "required oninvalid": "setCustomValidity('请输入账号')",
                            "class": "from-control",
-                           "for": "formGroupInputLarge",
-                           "placeholder": "请输入你的名字"
+                           "placeholder": "请输入你的名字",
+                           "oninput": " setCustomValidity('')"
                        })
     submit = SubmitField('Submit',
                          render_kw={
-                             "class": "from-control"
+                             "class": "btn btn-default"
                          })
 
     password = PasswordField('password', validators=[DataRequired(message=u"密码不能为空")],
+                             #    label='请输入密码',
                              render_kw={
-                                 "required": "required",
+                                 "required oninvalid": "setCustomValidity('请输入密码')",
                                  "class": " from-control",
-                                 "placeholder": "请输入密码"
-                    })
-
+                                 "placeholder": "required",
+                                 "oninput": "setCustomValidity('')"
+                             })
 
     def validate_name(self, field):
         account = field.data

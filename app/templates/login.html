@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<head>
+<head xmlns="http://www.w3.org/1999/html">
     <script scr="{{ url_for('static', filename='jQuery-2.2.0.min.js') }}"></script>
     <script scr="{{ url_for('static', filename='bootstrap.js') }}"></script>
     <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
@@ -59,37 +59,43 @@
   </form> #}
 
 
-<body class="hold-transition login-page">
+<body>
 <h1 class="form-sigin-heading">Login</h1>
-<div class="container col-xs-2 col-md-offset-5 col-center-block">
-    <form method="POST" class="form">
-        <div class="form-group has-feedback ">
-            {{ form.name }}
-            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-            {% for error in form.name.errors %}
-                <div class="col-md-12">
-                    <label style="color: red;"> {{ error }}</label>
-                </div>
-            {% endfor %}
+<div class="card-body ">
+    <div class="card col-xs-21  col-md-3  col-md-offset-5 col-sm-3 ">
+        <div class=" text-center container">
+            <img src="{{ url_for('static', filename='1.jpg') }}"
+                 style="width: 48px; height: 48px;  margin-bottom: 20px;" class="card-img-top rounded-circle">
         </div>
-        <div class="form-group has-feedback">
+        <form method="POST" class="form-group">
+            <div class="form-group has-error has-feedback">
+                {{ form.name.label }}
+                </br>
+                {{ form.name }}
+                {% for error in form.name.errors %}
+                    <div class="col-md-12 form-text text-warning">
+                        <small style="color: red;"> {{ error }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="form-group has-feedback">
+                {{ form.password.label }}
+                </br>
+                {{ form.password }}
 
-            {{ form.password }}
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                {% for error in form.password.errors %}
+                    <div class="col-md-12">
+                        <label style="color: red;"> {{ error }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xs-4 col-md-offset ">
+                {{ form.submit }}
+                {{ form.csrf_token }}
+            </div>
 
-            {% for error in form.password.errors %}
-                <div class="col-md-12">
-                    <label style="color: red;"> {{ error }}</label>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="col-xs-4 col-md-offset ">
-            {{ form.submit }}
-            {{ form.csrf_token }}
-        </div>
-
-    </form>
+        </form>
+    </div>
 </div>
-
 </body>
 </html
