@@ -9,7 +9,7 @@ class Name_Form(FlaskForm):
                        # label='请输入用户名',
                        render_kw={
                            "required oninvalid": "setCustomValidity('请输入账号')",
-                           "class": "from-control",
+                           "class": "control-label col",
                            "placeholder": "请输入你的名字",
                            "oninput": " setCustomValidity('')"
                        })
@@ -22,7 +22,7 @@ class Name_Form(FlaskForm):
                              #    label='请输入密码',
                              render_kw={
                                  "required oninvalid": "setCustomValidity('请输入密码')",
-                                 "class": " from-control",
+                                 "class": " control-label col",
                                  "placeholder": "required",
                                  "oninput": "setCustomValidity('')"
                              })
