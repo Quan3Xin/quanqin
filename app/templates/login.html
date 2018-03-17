@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <head xmlns="http://www.w3.org/1999/html">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script scr="{{ url_for('static', filename='bootstrap.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
     <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='iCheck/square/blue.css') }}">
-    <script scr="{{ url_for('static', filename='icheck.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
+
+
 </head>
 <body>
 <h1 class="form-sigin-heading col-md-5 col-md-offset-2">Login</h1>
@@ -13,13 +16,14 @@
 <div class="card-body row container  col ">
 
     <div class="card mx-auto col-2  ">
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger alert-dismissable " role="alert">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;
                 </button>
                 <strong> {{ message }} </strong>
             </div>
-        {% endfor %}
+             {% endfor %}
+
         <div class=" text-center container">
             <img src="{{ url_for('static', filename='1.jpg') }}"
                  style="width: 48px; height: 48px;  margin-bottom: 20px;" class="card-img-top rounded-circle">

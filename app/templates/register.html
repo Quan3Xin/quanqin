@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <head>
-    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='iCheck/square/blue.css') }}">
+    <script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
 
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 {% block body %}
-  <h1>Login</h1>
+    <h1>Login</h1>
 
-<button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
-<button type="button" class="btn btn-default btn-lg" disabled="disabled">Button</button>
+    <button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
+    <button type="button" class="btn btn-default btn-lg" disabled="disabled">Button</button>
 
-  {% if error %}
-    <p class=error><strong>Error:</strong> {{ error }}
-  {% endif %}
+    {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+    <div class="alert alert-danger alert-dismissable " role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;
+        </button>
+    </div>
+    <form action="" method="POST" class="form-horizontal col-md-offset-3">
+        <dl>
+            <dt>Username:
+                {{ form.name }}
+                {{ form.name.label }}
 
-  <form action=""  method="POST" class="form-horizontal col-md-offset-3">
-    <dl>
-      <dt >Username:
-            {{ form.name }}
-            {{ form.name.label }}
+                {{ form.csrf_token }}
+                <ul>
+                    {% for error in form.name.errors %}
+                        <li style="color: red;">
+                            {{ error }}
+                        </li>
+                    {% endfor %}
+                </ul>
 
-            {{ form.csrf_token }}
-          <ul>
-              {% for error in form.name.errors %}
-                <li style="color: red;">
-                    {{ error }}
-                </li>
-              {% endfor %}
-          </ul>
+            <dt>Password:
 
-      <dt>Password:
-
-         {{ form.password }}
-        {{ form.password.label }}
-        <ul>
-              {% for error in form.password.errors %}
-                <li style="color: red;">
-                    {{ error }}
-                </li>
-                {% endfor %}
-          </ul>
-    </dl>
+                {{ form.password }}
+                {{ form.password.label }}
+                <ul>
+                    {% for error in form.password.errors %}
+                        <li style="color: red;">
+                            {{ error }}
+                        </li>
+                    {% endfor %}
+                </ul>
+        </dl>
         {{ form.submit }}
-  </form>
+    </form>
 
 {% endblock %}
