@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='iCheck/square/blue.css') }}">
+    <script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
 </head>
 
 <body class="container-fluid">
 
-<ul>
-
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{{ url_for('home_view.register') }}">Sigin</a></li>
+    <li><a href="{{ url_for('home_view.log') }}">Sign In</a></li>
 </ul>
-{% block content %}
-    {% for foo in range(10) %}
-        <h1>hello,w</h1>
-    {% endfor %}
 
-<div class="jumbotron">
+
+<div class="container">
+    <div class="header clearfix">
+        <h3 class="text-muted">Todo</h3>
+    </div>
+
+    <div class="jumbotron">
+        {% block text %}{% endblock %}
+    </div>
+
+    <footer class="footer">
+        <p>&copy; quanqin.org 2018</p>
+    </footer>
+
 </div>
-
-{% endblock %}
 </body>
+
 </html>

@@ -2,39 +2,36 @@ from flask import render_template, request, flash, session, redirect, url_for
 from . import home_view
 from app.models.model import User
 from app import app
+from functools import wraps
 from app.control import forms
 from app.models.model import db
-
+from werkzeug.security import generate_password_hash
+from flask_login import login_required
 import json
 
 from bs4 import BeautifulSoup
-import urllib
-import traceback
+
+seesion = {}
+seesion['user'] = 'userlogin'
 
 
-class city_link(object):
-    name = ""
-    link = ""
-
-    def __init__(self, name, link):
-        self.name = name
-        self.link = link
+def login_req(func):
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        if 'admin' not in session:
+            return redirect(url_for('home_view.log', next=request.url))
+        return func(*args, **kwargs)
+    return decorated_function
 
 
 @home_view.route('/')
 @home_view.route('/index')
+@login_req
 def index():
     URL = 'http://www.amis.pk/DistrictCities.aspx'
 
     return render_template("index.html",
                            title='Home')
-
-
-@app.route('/new/<data>', methods=['GET', 'POST'])
-def new(data):
-    return render_template("new.html",
-                           title='Home',
-                           link=data)
 
 
 @home_view.route('/login', methods=['GET', 'POST'])
@@ -47,35 +44,36 @@ def log():
         admin = User.query.filter_by(name=form_table.data['name']).first()
         # pwd = User.query.filter_by(pwd=data['password']).first()
 
-        print(admin)
+        print(admin.check_pwd)
         if admin != None:
-            if not admin.verify_password(data['password']):
+            if not admin.check_pwd(data['password']):
                 print('===============================<>')
+                print(admin.verify_password(data['password']))
                 flash("密码or账号错误")
                 return redirect(url_for('home_view.log'))
             else:
                 print(admin)
                 print('<------------------------->')
-                session['kown'] = True
-                data = ''
-                flash("Jumping")
+                session['admin'] = data['name']
                 return redirect(request.args.get('next') or url_for('home_view.index'))
-        else:
-            flash("账号不能为空")
+
     return render_template('login.html', error=error, form=form_table)
+
 
 @home_view.route('/register', methods=['GET', 'POST'])
 def register():
     error = None
     forms_register = forms.Register_Form()
     if forms_register.validate_on_submit():
-        user = User(name = forms_register.name.data, pwd=forms_register.password.data)
+        user = User(name=forms_register.name.data, pwd=generate_password_hash(forms_register.password.data))
         db.session.add(user)
         db.session.commit()
         flash('注册成功')
         print('-----------------------<>')
         return redirect(request.args.get('next') or url_for('home_view.index'))
     return render_template('register.html', form=forms_register, error=error)
+
+
 @home_view.route('/error')
 def error():
     return render_template('error.html')

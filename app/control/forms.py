@@ -23,7 +23,7 @@ class Name_Form(FlaskForm):
                              render_kw={
                                  "required oninvalid": "setCustomValidity('请输入密码')",
                                  "class": " control-label col",
-                                 "placeholder": "required",
+                                 "placeholder": "请输入密码",
                                  "oninput": "setCustomValidity('')"
                              })
 
@@ -36,10 +36,28 @@ class Name_Form(FlaskForm):
 
 
 class Register_Form(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
-    submit = SubmitField('register')
 
+    name = StringField('请输入名字', validators=[DataRequired(message=u'内容不能不为空')],
+                       # label='请输入用户名',
+                       render_kw={
+                           "required oninvalid": "setCustomValidity('请输入账号')",
+                           "class": "control-label col",
+                           "placeholder": "请输入你的名字",
+                           "oninput": " setCustomValidity('')"
+                       })
+    submit = SubmitField('确定',
+                         render_kw={
+                             "class": "btn btn-default"
+                         })
+
+    password = PasswordField('请输入密码', validators=[DataRequired(message=u"密码不能为空")],
+                             #    label='请输入密码',
+                             render_kw={
+                                 "required oninvalid": "setCustomValidity('请输入密码')",
+                                 "class": " control-label col",
+                                 "placeholder": "请输入密码",
+                                 "oninput": "setCustomValidity('')"
+                             })
     def validate_name(self, field):
         account = field.data
 

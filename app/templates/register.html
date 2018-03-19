@@ -24,9 +24,8 @@
     </div>
     <form action="" method="POST" class="form-horizontal col-md-offset-3">
         <dl>
-            <dt>Username:
+            <dt>{{ form.name.label }}:
                 {{ form.name }}
-                {{ form.name.label }}
 
                 {{ form.csrf_token }}
                 <ul>
@@ -37,10 +36,9 @@
                     {% endfor %}
                 </ul>
 
-            <dt>Password:
+                <dt>{{ form.password.label }}:
 
                 {{ form.password }}
-                {{ form.password.label }}
                 <ul>
                     {% for error in form.password.errors %}
                         <li style="color: red;">

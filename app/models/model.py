@@ -2,17 +2,13 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import pymysql
 from werkzeug.security import generate_password_hash, check_password_hash
 from _datetime import datetime
+from flask_login import  UserMixin
+from app import db
+from flask_login import login_manager
 
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:c3@176.122.167.111/test'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
-
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
@@ -49,7 +45,8 @@ class User(db.Model):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.pwd, pwd)
 
-
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 class Pass_word(db.Model):
     __tablename__ = 'password'
     id = db.Column(db.Integer, primary_key=True)
