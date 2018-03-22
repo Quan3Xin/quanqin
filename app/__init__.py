@@ -18,12 +18,12 @@ from app import Views
 
 bootstrap = Bootstrap(app)
 app.register_blueprint(home_view)
-login_manager = LoginManager()
+"""login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'home_view.log'
 login_manager.session_protection = 'None'
 login_manager.login_message = u"Bonvolu ensaluti por uzi tio pa臐o."
-
+"""
 
 def create_app(config_name):
     pass
