@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+    <head xmlns="http://www.w3.org/1999/html">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+        <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='iCheck/square/blue.css') }}">
+        <script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
+    </head>
+{% endblock %}
+<body>
+{% block nav %}{% endblock %}
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+    </ul>
+    </body>
+
+</html>
