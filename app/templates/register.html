@@ -1,15 +1,11 @@
 <!DOCTYPE html>
+{% extends "nav.html" %}
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
-    <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='iCheck/square/blue.css') }}">
-    <script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
 
 </head>
-{% block body %}
+
+<div>
+
     <h1>Login</h1>
 
     <button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
@@ -22,6 +18,7 @@
         <button type="button" class="close" data-dismiss="alert">&times;
         </button>
     </div>
+    {% block nav %}
     <form action="" method="POST" class="form-horizontal col-md-offset-3">
         <dl>
             <dt>{{ form.name.label }}:
@@ -49,5 +46,6 @@
         </dl>
         {{ form.submit }}
     </form>
+    {% endblock %}
 
-{% endblock %}
+</div>
