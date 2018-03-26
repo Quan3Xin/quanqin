@@ -16,13 +16,13 @@
 <div class="card-body row container  col ">
 
     <div class="card mx-auto col-2 ">
-            {% for message in get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
             <div class="alert alert-danger alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;
                 </button>
                 <strong> {{ message }} </strong>
             </div>
-             {% endfor %}
+        {% endfor %}
 
         <div class=" text-center container">
             <img src="{{ url_for('static', filename='1.jpg') }}"
@@ -59,7 +59,15 @@
                 </div>
             </div>
         </form>
+
+    </div>
+
+</div>
+<div class="card-body row container  col ">
+    <div class="nav-link card-body row container col-2 mx-auto">
+        <p>no account? <a href="register.html" class="badge badge-pill badge-primary">register</a></p>
     </div>
 </div>
+
 </body>
-</html>
+{#</html>#}
