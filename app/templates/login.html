@@ -6,72 +6,68 @@
     <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='iCheck/square/blue.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ url_for('static', filename='icheck.min.js') }}"></script>
 
 
 </head>
 <body>
-<h1 class="form-sigin-heading col-md-5 col-md-offset-2">Login</h1>
-
-<div class="card-body row container  col ">
-
-    <div class="card mx-auto col-2 ">
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger alert-dismissible fade show">
-                <button type="button" class="close" data-dismiss="alert">&times;
-                </button>
-                <strong> {{ message }} </strong>
-            </div>
-        {% endfor %}
-
-        <div class=" text-center container">
-            <img src="{{ url_for('static', filename='1.jpg') }}"
-                 style="width: 48px; height: 48px;  margin-bottom: 20px;" class="card-img-top rounded-circle">
-        </div>
-        <form method="POST" class="form-group">
-            <div class="form-group has-error has-feedback">
-                {{ form.name.label }}
-                </br>
-                <div class="text-center">{{ form.name }}</div>
-                <div class="container">
-
-
-                    {% for error in form.name.errors %}
-                        <div class="col-md-12 form-text text-warning">
-                            <small style="color: red;"> {{ error }}</small>
-                        </div>
-                    {% endfor %}
+<h1 class="form-sigin-heading col-md-5 col-md-offset-2 ">Login</h1>
+<div class="container-fluid">
+    <div class="card-body row   mx-auto ">
+        <div class="card mx-auto col-xl-2 col-sm-6 col-md-4">
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;
+                    </button>
+                    <strong> {{ message }} </strong>
                 </div>
-                <div class="form-group has-feedback" style="margin-top: 10px;">
-                    {{ form.password.label }}
+            {% endfor %}
+
+            <div class=" text-center container">
+                <img src="{{ url_for('static', filename='1.jpg') }}"
+                     style="width: 48px; height: 48px;  margin-bottom: 20px;" class="card-img-top rounded-circle">
+            </div>
+            <form method="POST" class="form-group">
+                <div class="form-group has-error has-feedback">
+                    {{ form.name.label }}
                     </br>
-                    <div class="text-center">{{ form.password }}</div>
+                    <div class="text-center">{{ form.name }}</div>
+                    <div class="container">
 
-                    {% for error in form.password.errors %}
-                        <div class="col-md-12">
-                            <label style="color: red;"> {{ error }}</label>
-                        </div>
-                    {% endfor %}
+
+                        {% for error in form.name.errors %}
+                            <div class="col-md-12 form-text text-warning">
+                                <small style="color: red;"> {{ error }}</small>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group has-feedback" style="margin-top: 10px;">
+                        {{ form.password.label }}
+                        </br>
+                        <div class="text-center">{{ form.password }}</div>
+
+                        {% for error in form.password.errors %}
+                            <div class="col-md-12">
+                                <label style="color: red;"> {{ error }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-4 col-md-offset ">
+                        <div class="text-center">{{ form.submit }}</div>
+                        {{ form.csrf_token }}
+                    </div>
                 </div>
-                <div class="col-xs-4 col-md-offset ">
-                    <div class="text-center">{{ form.submit }}</div>
-                    {{ form.csrf_token }}
-                </div>
-            </div>
-        </form>
+            </form>
+
+        </div>
 
     </div>
-
-</div>
-<div class="card-body row container  col ">
-    <div class="nav-link card-body row container col-2 mx-auto">
-        <p>no account? <a href="register.html" class="badge badge-pill badge-primary">register</a></p>
-    </div>
-    <div class="card-block">
-        <p> no account? </p>
-        <a href="/register">register</a>
+    <div class="card-body row container  col ">
+        <div class="nav-link card-body row container col-2 mx-auto">
+            <p>no account? <a href="register.html" class="badge badge-pill badge-primary">register</a></p>
+        </div>
     </div>
 </div>
-
 </body>
 {#</html>#}
