@@ -15,7 +15,7 @@ constantly==15.1.0
 cryptography==2.1.4
 cssselect==1.0.3
 cycler==0.10.0
-Django==1.11.7
+Django==1.11.29
 dominate==2.3.1
 enum34==1.1.6
 Fabric==1.14.0
