@@ -30,7 +30,7 @@ Flask-PyMongo==0.5.1
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.1
 Flask-WTF==0.14.2
-html5lib==0.9999999
+html5lib==0.999999999
 hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
